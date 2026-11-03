@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://bvegjjwpyluyx"]
+
+[ext_resource type="Script" uid="uid://dlnkt1osp018m" path="res://core/player.gd" id="1_s0dwd"]
+[ext_resource type="Texture2D" uid="uid://bq0s271aw2sdl" path="res://art/player/idle/0.png" id="2_2dpcx"]
+[ext_resource type="Texture2D" uid="uid://dc7gkdfsvnya" path="res://art/player/idle/1.png" id="3_s55bn"]
+[ext_resource type="Texture2D" uid="uid://qoc58erwyb23" path="res://art/player/jump/0.png" id="4_p73st"]
+[ext_resource type="Texture2D" uid="uid://c7edbvblg4uow" path="res://art/player/jump/1.png" id="5_g20r7"]
+[ext_resource type="Texture2D" uid="uid://b8gokdil677kp" path="res://art/player/jump/2.png" id="6_dqutg"]
+[ext_resource type="Texture2D" uid="uid://dj8udidqpirt4" path="res://art/player/jump/3.png" id="7_qurgt"]
+[ext_resource type="Texture2D" uid="uid://cflxokuvk47mn" path="res://art/player/walk/0.png" id="8_mds53"]
+[ext_resource type="Texture2D" uid="uid://bq78b0o80modu" path="res://art/player/walk/1.png" id="9_m83dv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hgkml"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2dpcx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_s55bn")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 1.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_p73st")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g20r7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dqutg")
+}, {
+"duration": 2.0,
+"texture": ExtResource("7_qurgt")
+}],
+"loop": 1,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_mds53")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_m83dv")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgkml"]
+size = Vector2(226, 228)
+
+[node name="Player" type="Area2D" unique_id=77035064]
+script = ExtResource("1_s0dwd")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=314643319]
+position = Vector2(114.5, 114.5)
+scale = Vector2(8.15625, 8.15625)
+sprite_frames = SubResource("SpriteFrames_hgkml")
+animation = &"walk"
+frame_progress = 0.6003709
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1846040485]
+position = Vector2(113, 115)
+shape = SubResource("RectangleShape2D_hgkml")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
